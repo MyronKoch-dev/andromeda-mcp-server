@@ -115,6 +115,12 @@ STATUS-REPORT-20250530-TIER1-COMPLETE.md
 # Archive folder
 archive/
 
+# Handoff documentation (keep local only)
+handoffs/
+
+# Spec story and development artifacts (keep local only)
+.specstory/
+
 # New additions
 debug-mnemonic.js
 index-original.ts

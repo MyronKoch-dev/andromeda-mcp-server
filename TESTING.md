@@ -14,10 +14,10 @@ I'll structure this as an executable test script that someone could follow step-
 ### **Test Environment Setup**
 ```
 Network: galileo-4 testnet
-Wallet: andr1akrkuta856eth47567hk2nrknfpjdwtgxjxt8v
-Mnemonic: romance prepare tell social clown phone subject oval reflect task stumble ranch hawk wife cousin valid rabbit monkey across syrup gym make tail private
-Starting Balance: ~4.7 ANDR
-Secondary Address: andr1fv3suh5ctrtp735u4rmjtsefem39f4ksd7ukp4 (generated earlier)
+Wallet: [GENERATE_YOUR_OWN_WALLET]
+Mnemonic: [USE_YOUR_OWN_MNEMONIC_PHRASE]
+Starting Balance: Request testnet tokens from faucet
+Secondary Address: [GENERATE_ADDITIONAL_WALLETS_AS_NEEDED]
 ```
 
 ---
@@ -42,7 +42,7 @@ get_validators()
 ### **3. Test Wallet Validation**
 ```javascript
 get_account_info({
-  address: "andr1akrkuta856eth47567hk2nrknfpjdwtgxjxt8v"
+  address: "[GENERATE_YOUR_OWN_WALLET]"
 })
 // Expected: accountNumber, sequence number
 // Success Criteria: Account exists with sequence > 0
@@ -51,7 +51,7 @@ get_account_info({
 ### **4. Balance Confirmation**
 ```javascript
 get_account_balance({
-  address: "andr1akrkuta856eth47567hk2nrknfpjdwtgxjxt8v"
+  address: "[GENERATE_YOUR_OWN_WALLET]"
 })
 // Expected: ~4,700,000 uandr
 // Success Criteria: Balance > 4,000,000 uandr
@@ -60,9 +60,9 @@ get_account_balance({
 ### **5. Mnemonic Verification**
 ```javascript
 get_wallet_address({
-  mnemonic: "romance prepare tell social clown phone subject oval reflect task stumble ranch hawk wife cousin valid rabbit monkey across syrup gym make tail private"
+  mnemonic: "[USE_YOUR_OWN_MNEMONIC_PHRASE]"
 })
-// Expected: andr1akrkuta856eth47567hk2nrknfpjdwtgxjxt8v
+// Expected: [GENERATE_YOUR_OWN_WALLET]
 // Success Criteria: Matches our test address
 ```
 
@@ -120,16 +120,16 @@ deploy_ado({
     symbol: "BDT",
     decimals: 6,
     initial_balances: [{
-      address: "andr1akrkuta856eth47567hk2nrknfpjdwtgxjxt8v",
+      address: "[GENERATE_YOUR_OWN_WALLET]",
       amount: "10000000" // 10M tokens
     }],
     mint: {
-      minter: "andr1akrkuta856eth47567hk2nrknfpjdwtgxjxt8v",
+      minter: "[GENERATE_YOUR_OWN_WALLET]",
       cap: null // No cap
     },
     kernel_address: "andr14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9shptkql"
   },
-  mnemonic: "romance prepare tell social clown phone subject oval reflect task stumble ranch hawk wife cousin valid rabbit monkey across syrup gym make tail private"
+  mnemonic: "[USE_YOUR_OWN_MNEMONIC_PHRASE]"
 })
 // Expected: New contract address
 // Save: DEMO_TOKEN_ADDRESS = result.contractAddress
@@ -151,9 +151,9 @@ query_ado({
 ```javascript
 cw20_mint({
   contractAddress: DEMO_TOKEN_ADDRESS,
-  recipient: "andr1akrkuta856eth47567hk2nrknfpjdwtgxjxt8v",
+  recipient: "[GENERATE_YOUR_OWN_WALLET]",
   amount: "1000000", // 1M tokens
-  mnemonic: "romance prepare tell social clown phone subject oval reflect task stumble ranch hawk wife cousin valid rabbit monkey across syrup gym make tail private"
+  mnemonic: "[USE_YOUR_OWN_MNEMONIC_PHRASE]"
 })
 // Expected: Successful mint transaction
 // Running Total: 11M tokens
@@ -163,9 +163,9 @@ cw20_mint({
 ```javascript
 cw20_mint({
   contractAddress: DEMO_TOKEN_ADDRESS,
-  recipient: "andr1fv3suh5ctrtp735u4rmjtsefem39f4ksd7ukp4",
+  recipient: "[GENERATE_SECONDARY_WALLET]",
   amount: "500000", // 500K tokens
-  mnemonic: "romance prepare tell social clown phone subject oval reflect task stumble ranch hawk wife cousin valid rabbit monkey across syrup gym make tail private"
+  mnemonic: "[USE_YOUR_OWN_MNEMONIC_PHRASE]"
 })
 // Expected: Successful mint transaction
 // Running Total: 11.5M tokens
@@ -189,12 +189,12 @@ execute_ado({
   contractAddress: DEMO_TOKEN_ADDRESS,
   msg: {
     transfer: {
-      recipient: "andr1fv3suh5ctrtp735u4rmjtsefem39f4ksd7ukp4",
+      recipient: "[GENERATE_SECONDARY_WALLET]",
       amount: "100000" // 100K tokens
     }
   },
   gas: "200000",
-  mnemonic: "romance prepare tell social clown phone subject oval reflect task stumble ranch hawk wife cousin valid rabbit monkey across syrup gym make tail private"
+  mnemonic: "[USE_YOUR_OWN_MNEMONIC_PHRASE]"
 })
 // Expected: Successful transfer
 // New Balance: Primary -100K, Secondary +100K
@@ -205,7 +205,7 @@ execute_ado({
 cw20_burn({
   contractAddress: DEMO_TOKEN_ADDRESS,
   amount: "50000", // 50K tokens
-  mnemonic: "romance prepare tell social clown phone subject oval reflect task stumble ranch hawk wife cousin valid rabbit monkey across syrup gym make tail private"
+  mnemonic: "[USE_YOUR_OWN_MNEMONIC_PHRASE]"
 })
 // Expected: Successful burn
 // Total Supply: Now 11.45M
@@ -217,7 +217,7 @@ query_ado({
   contractAddress: DEMO_TOKEN_ADDRESS,
   query: {
     balance: {
-      address: "andr1akrkuta856eth47567hk2nrknfpjdwtgxjxt8v"
+      address: "[GENERATE_YOUR_OWN_WALLET]"
     }
   }
 })
@@ -227,7 +227,7 @@ query_ado({
   contractAddress: DEMO_TOKEN_ADDRESS,
   query: {
     balance: {
-      address: "andr1fv3suh5ctrtp735u4rmjtsefem39f4ksd7ukp4"
+      address: "[GENERATE_SECONDARY_WALLET]"
     }
   }
 })
@@ -247,10 +247,10 @@ deploy_ado({
   instantiateMsg: {
     name: "Board Demo NFT Collection",
     symbol: "BDNFT",
-    minter: "andr1akrkuta856eth47567hk2nrknfpjdwtgxjxt8v",
+    minter: "[GENERATE_YOUR_OWN_WALLET]",
     kernel_address: "andr14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9shptkql"
   },
-  mnemonic: "romance prepare tell social clown phone subject oval reflect task stumble ranch hawk wife cousin valid rabbit monkey across syrup gym make tail private"
+  mnemonic: "[USE_YOUR_OWN_MNEMONIC_PHRASE]"
 })
 // Expected: New contract address
 // Save: DEMO_NFT_ADDRESS = result.contractAddress
@@ -274,27 +274,27 @@ query_ado({
 cw721_mint_nft({
   contractAddress: DEMO_NFT_ADDRESS,
   tokenId: "BOARD_NFT_001",
-  owner: "andr1akrkuta856eth47567hk2nrknfpjdwtgxjxt8v",
+  owner: "[GENERATE_YOUR_OWN_WALLET]",
   tokenUri: "https://demo.andromeda.com/nft/001",
-  mnemonic: "romance prepare tell social clown phone subject oval reflect task stumble ranch hawk wife cousin valid rabbit monkey across syrup gym make tail private"
+  mnemonic: "[USE_YOUR_OWN_MNEMONIC_PHRASE]"
 })
 
 // NFT 2 - Standard
 cw721_mint_nft({
   contractAddress: DEMO_NFT_ADDRESS,
   tokenId: "BOARD_NFT_002",
-  owner: "andr1akrkuta856eth47567hk2nrknfpjdwtgxjxt8v",
+  owner: "[GENERATE_YOUR_OWN_WALLET]",
   tokenUri: "https://demo.andromeda.com/nft/002",
-  mnemonic: "romance prepare tell social clown phone subject oval reflect task stumble ranch hawk wife cousin valid rabbit monkey across syrup gym make tail private"
+  mnemonic: "[USE_YOUR_OWN_MNEMONIC_PHRASE]"
 })
 
 // NFT 3 - For Auction
 cw721_mint_nft({
   contractAddress: DEMO_NFT_ADDRESS,
   tokenId: "BOARD_NFT_003",
-  owner: "andr1akrkuta856eth47567hk2nrknfpjdwtgxjxt8v",
+  owner: "[GENERATE_YOUR_OWN_WALLET]",
   tokenUri: "https://demo.andromeda.com/nft/003",
-  mnemonic: "romance prepare tell social clown phone subject oval reflect task stumble ranch hawk wife cousin valid rabbit monkey across syrup gym make tail private"
+  mnemonic: "[USE_YOUR_OWN_MNEMONIC_PHRASE]"
 })
 ```
 
@@ -304,7 +304,7 @@ query_ado({
   contractAddress: DEMO_NFT_ADDRESS,
   query: {
     tokens: {
-      owner: "andr1akrkuta856eth47567hk2nrknfpjdwtgxjxt8v",
+      owner: "[GENERATE_YOUR_OWN_WALLET]",
       limit: 10
     }
   }
@@ -325,9 +325,9 @@ deploy_ado({
   name: "DemoMarketplace",
   instantiateMsg: {
     kernel_address: "andr14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9shptkql",
-    owner: "andr1akrkuta856eth47567hk2nrknfpjdwtgxjxt8v"
+    owner: "[GENERATE_YOUR_OWN_WALLET]"
   },
-  mnemonic: "romance prepare tell social clown phone subject oval reflect task stumble ranch hawk wife cousin valid rabbit monkey across syrup gym make tail private"
+  mnemonic: "[USE_YOUR_OWN_MNEMONIC_PHRASE]"
 })
 // Expected: New contract address
 // Save: DEMO_MARKETPLACE_ADDRESS = result.contractAddress
@@ -345,7 +345,7 @@ execute_ado({
     }
   },
   gas: "200000",
-  mnemonic: "romance prepare tell social clown phone subject oval reflect task stumble ranch hawk wife cousin valid rabbit monkey across syrup gym make tail private"
+  mnemonic: "[USE_YOUR_OWN_MNEMONIC_PHRASE]"
 })
 
 // List NFT 1
@@ -357,7 +357,7 @@ marketplace_list_item({
     denom: "uandr",
     amount: "1000000" // 1 ANDR
   },
-  mnemonic: "romance prepare tell social clown phone subject oval reflect task stumble ranch hawk wife cousin valid rabbit monkey across syrup gym make tail private"
+  mnemonic: "[USE_YOUR_OWN_MNEMONIC_PHRASE]"
 })
 
 // Approve and List NFT 2
@@ -370,7 +370,7 @@ execute_ado({
     }
   },
   gas: "200000",
-  mnemonic: "romance prepare tell social clown phone subject oval reflect task stumble ranch hawk wife cousin valid rabbit monkey across syrup gym make tail private"
+  mnemonic: "[USE_YOUR_OWN_MNEMONIC_PHRASE]"
 })
 
 marketplace_list_item({
@@ -381,7 +381,7 @@ marketplace_list_item({
     denom: "uandr",
     amount: "2000000" // 2 ANDR
   },
-  mnemonic: "romance prepare tell social clown phone subject oval reflect task stumble ranch hawk wife cousin valid rabbit monkey across syrup gym make tail private"
+  mnemonic: "[USE_YOUR_OWN_MNEMONIC_PHRASE]"
 })
 ```
 
@@ -433,21 +433,21 @@ deploy_ado({
     recipients: [
       {
         recipient: {
-          address: "andr1akrkuta856eth47567hk2nrknfpjdwtgxjxt8v"
+          address: "[GENERATE_YOUR_OWN_WALLET]"
         },
         percent: "0.7" // 70%
       },
       {
         recipient: {
-          address: "andr1fv3suh5ctrtp735u4rmjtsefem39f4ksd7ukp4"
+          address: "[GENERATE_SECONDARY_WALLET]"
         },
         percent: "0.3" // 30%
       }
     ],
     kernel_address: "andr14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9shptkql",
-    owner: "andr1akrkuta856eth47567hk2nrknfpjdwtgxjxt8v"
+    owner: "[GENERATE_YOUR_OWN_WALLET]"
   },
-  mnemonic: "romance prepare tell social clown phone subject oval reflect task stumble ranch hawk wife cousin valid rabbit monkey across syrup gym make tail private"
+  mnemonic: "[USE_YOUR_OWN_MNEMONIC_PHRASE]"
 })
 // Expected: New contract address
 // Save: DEMO_SPLITTER_ADDRESS = result.contractAddress
@@ -460,7 +460,7 @@ transfer_tokens({
   amount: "100000", // 0.1 ANDR
   denom: "uandr",
   memo: "Testing splitter distribution",
-  mnemonic: "romance prepare tell social clown phone subject oval reflect task stumble ranch hawk wife cousin valid rabbit monkey across syrup gym make tail private"
+  mnemonic: "[USE_YOUR_OWN_MNEMONIC_PHRASE]"
 })
 // Expected: Funds sent to splitter
 // Success Criteria: Transaction succeeds
@@ -474,7 +474,7 @@ execute_ado({
     send: {}
   },
   gas: "200000",
-  mnemonic: "romance prepare tell social clown phone subject oval reflect task stumble ranch hawk wife cousin valid rabbit monkey across syrup gym make tail private"
+  mnemonic: "[USE_YOUR_OWN_MNEMONIC_PHRASE]"
 })
 // Expected: Funds distributed 70/30
 // Verify: Check increased balances
@@ -486,15 +486,15 @@ splitter_update_recipients({
   splitterAddress: DEMO_SPLITTER_ADDRESS,
   recipients: [
     {
-      address: "andr1akrkuta856eth47567hk2nrknfpjdwtgxjxt8v",
+      address: "[GENERATE_YOUR_OWN_WALLET]",
       percent: "0.6" // Now 60%
     },
     {
-      address: "andr1fv3suh5ctrtp735u4rmjtsefem39f4ksd7ukp4",
+      address: "[GENERATE_SECONDARY_WALLET]",
       percent: "0.4" // Now 40%
     }
   ],
-  mnemonic: "romance prepare tell social clown phone subject oval reflect task stumble ranch hawk wife cousin valid rabbit monkey across syrup gym make tail private"
+  mnemonic: "[USE_YOUR_OWN_MNEMONIC_PHRASE]"
 })
 // Expected: Configuration updated
 // Success Criteria: New ratios active
@@ -508,7 +508,7 @@ deploy_cw20_staking({
   rewardToken: DEMO_TOKEN_ADDRESS,
   rewardAllocation: "1000000", // 1M tokens for rewards
   unbondingPeriod: 86400, // 1 day
-  mnemonic: "romance prepare tell social clown phone subject oval reflect task stumble ranch hawk wife cousin valid rabbit monkey across syrup gym make tail private"
+  mnemonic: "[USE_YOUR_OWN_MNEMONIC_PHRASE]"
 })
 // Expected: New contract address
 // Save: DEMO_STAKING_ADDRESS = result.contractAddress
@@ -526,7 +526,7 @@ execute_ado({
     }
   },
   gas: "200000",
-  mnemonic: "romance prepare tell social clown phone subject oval reflect task stumble ranch hawk wife cousin valid rabbit monkey across syrup gym make tail private"
+  mnemonic: "[USE_YOUR_OWN_MNEMONIC_PHRASE]"
 })
 
 // Then stake
@@ -534,7 +534,7 @@ stake_cw20_tokens({
   stakingAddress: DEMO_STAKING_ADDRESS,
   tokenAddress: DEMO_TOKEN_ADDRESS,
   amount: "500000",
-  mnemonic: "romance prepare tell social clown phone subject oval reflect task stumble ranch hawk wife cousin valid rabbit monkey across syrup gym make tail private"
+  mnemonic: "[USE_YOUR_OWN_MNEMONIC_PHRASE]"
 })
 // Expected: Tokens staked successfully
 // Success Criteria: Staking balance = 500K
@@ -546,7 +546,7 @@ query_ado({
   contractAddress: DEMO_STAKING_ADDRESS,
   query: {
     staked: {
-      address: "andr1akrkuta856eth47567hk2nrknfpjdwtgxjxt8v"
+      address: "[GENERATE_YOUR_OWN_WALLET]"
     }
   }
 })
@@ -565,7 +565,7 @@ deploy_auction({
   name: "DemoAuction",
   authorizedTokenAddresses: [DEMO_NFT_ADDRESS],
   authorizedCw20Address: DEMO_TOKEN_ADDRESS,
-  mnemonic: "romance prepare tell social clown phone subject oval reflect task stumble ranch hawk wife cousin valid rabbit monkey across syrup gym make tail private"
+  mnemonic: "[USE_YOUR_OWN_MNEMONIC_PHRASE]"
 })
 // Expected: New contract address
 // Save: DEMO_AUCTION_ADDRESS = result.contractAddress
@@ -583,7 +583,7 @@ execute_ado({
     }
   },
   gas: "200000",
-  mnemonic: "romance prepare tell social clown phone subject oval reflect task stumble ranch hawk wife cousin valid rabbit monkey across syrup gym make tail private"
+  mnemonic: "[USE_YOUR_OWN_MNEMONIC_PHRASE]"
 })
 
 // Start auction
@@ -594,8 +594,8 @@ start_auction({
   duration: 3600000, // 1 hour
   startingBid: "500000", // 0.5 ANDR minimum
   coinDenom: "uandr",
-  recipient: "andr1akrkuta856eth47567hk2nrknfpjdwtgxjxt8v",
-  mnemonic: "romance prepare tell social clown phone subject oval reflect task stumble ranch hawk wife cousin valid rabbit monkey across syrup gym make tail private"
+  recipient: "[GENERATE_YOUR_OWN_WALLET]",
+  mnemonic: "[USE_YOUR_OWN_MNEMONIC_PHRASE]"
 })
 // Expected: Auction started
 // Save: AUCTION_ID for reference
@@ -650,7 +650,7 @@ get_recent_transactions({
 deploy_cw20_exchange({
   tokenAddress: DEMO_TOKEN_ADDRESS,
   name: "DemoExchange",
-  mnemonic: "romance prepare tell social clown phone subject oval reflect task stumble ranch hawk wife cousin valid rabbit monkey across syrup gym make tail private"
+  mnemonic: "[USE_YOUR_OWN_MNEMONIC_PHRASE]"
 })
 // Expected: New contract address
 // Save: DEMO_EXCHANGE_ADDRESS = result.contractAddress
@@ -668,7 +668,7 @@ execute_ado({
     }
   },
   gas: "200000",
-  mnemonic: "romance prepare tell social clown phone subject oval reflect task stumble ranch hawk wife cousin valid rabbit monkey across syrup gym make tail private"
+  mnemonic: "[USE_YOUR_OWN_MNEMONIC_PHRASE]"
 })
 
 // Start sale
@@ -682,7 +682,7 @@ start_cw20_sale({
   },
   exchangeRate: "10", // 10 uandr per token
   duration: 7200000, // 2 hours
-  mnemonic: "romance prepare tell social clown phone subject oval reflect task stumble ranch hawk wife cousin valid rabbit monkey across syrup gym make tail private"
+  mnemonic: "[USE_YOUR_OWN_MNEMONIC_PHRASE]"
 })
 // Expected: Sale started
 // Success Criteria: Tokens available for purchase
@@ -698,7 +698,7 @@ purchase_cw20_tokens({
     amount: "100000", // Buy 10K tokens
     denom: "uandr"
   },
-  mnemonic: "romance prepare tell social clown phone subject oval reflect task stumble ranch hawk wife cousin valid rabbit monkey across syrup gym make tail private"
+  mnemonic: "[USE_YOUR_OWN_MNEMONIC_PHRASE]"
 })
 
 // Query sale status
@@ -717,7 +717,7 @@ cancel_cw20_sale({
     type: "native",
     value: "uandr"
   },
-  mnemonic: "romance prepare tell social clown phone subject oval reflect task stumble ranch hawk wife cousin valid rabbit monkey across syrup gym make tail private"
+  mnemonic: "[USE_YOUR_OWN_MNEMONIC_PHRASE]"
 })
 ```
 
@@ -740,7 +740,7 @@ transfer_tokens({
   amount: "50000", // 0.05 ANDR
   denom: "uandr",
   memo: "Welcome gift",
-  mnemonic: "romance prepare tell social clown phone subject oval reflect task stumble ranch hawk wife cousin valid rabbit monkey across syrup gym make tail private"
+  mnemonic: "[USE_YOUR_OWN_MNEMONIC_PHRASE]"
 })
 // Expected: Successful transfer
 // Success Criteria: New wallet funded

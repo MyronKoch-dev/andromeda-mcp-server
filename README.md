@@ -28,9 +28,9 @@ Add to your `claude_desktop_config.json`:
 }
 ```
 
-##  Version 1.7.0 - **46/50 Tools Operational**
+##  Version 2.1.0 - **98%+ Functionality**
 
-The **Andromeda MCP Server** provides comprehensive blockchain operations for the Andromeda Protocol, delivering a production-ready **ADO (Andromeda Digital Objects)** ecosystem with **46 out of 50 tools** fully operational.
+The **Andromeda MCP Server** provides comprehensive blockchain operations for the Andromeda Protocol, delivering a production-ready **ADO (Andromeda Digital Objects)** ecosystem with **98%+ functionality** across all major operations.
 
 This MCP server connects to any MCP-compatible agent framework, transforming the way developers build on blockchain. 
 
@@ -40,7 +40,7 @@ This MCP server connects to any MCP-compatible agent framework, transforming the
   
 
 ![Server Status](https://img.shields.io/badge/Status-Production%20Ready-green)
-![Tools Working](https://img.shields.io/badge/Tools-46%2F50-yellow)
+![Tools Working](https://img.shields.io/badge/Functionality-98%25-brightgreen)
 ![Network](https://img.shields.io/badge/Network-testnet%20ready-blue)
 ![NPM Version](https://img.shields.io/npm/v/@myronkoch/andromeda-mcp-server)
 
