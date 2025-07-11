@@ -89,6 +89,7 @@ temp/
 # Cursor/AI specific
 .cursor/
 .ai/
+.cursorindexingignore
 
 # Development backups (keep local only)
 src/*.backup*
